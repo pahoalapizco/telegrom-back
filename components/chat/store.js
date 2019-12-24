@@ -2,9 +2,9 @@
 
 const chatModel = require('./model')
 
-function addChat (users) {
-  const chat = new chatModel(user)
-  chat.save()
+function addChat (chat) {
+  const newChat = new chatModel(chat)
+  return newChat.save()
 }
 
 function getChats (user) {
@@ -12,7 +12,8 @@ function getChats (user) {
     users: user
   }
 
-  
+  const chats = chatModel.find(filter).populate('users')
+  return chats
 }
 
 module.exports = {
