@@ -18,7 +18,7 @@ const storage = multer.diskStorage({
     cb(null, uuid.v4() + path.extname(file.originalname))
   }
  })
- 
+
 const upload = multer({ storage })
 
 router.get('/', function(req, res) {
@@ -32,7 +32,6 @@ router.get('/', function(req, res) {
 router.post('/', upload.single('file'), function(req, res) {
   const { user, message, chat } = req.body
   const file = req.file
-  console.log(path.extname(file.originalname))
   controller.addMessage(user, message, chat, file)
     .then(fullMessage =>  response.success(req, res, fullMessage, 201))
     .catch(e => response.error(req, res, e, 500))

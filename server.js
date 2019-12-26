@@ -1,20 +1,27 @@
 'use strict'
 
 const express = require('express')
+const app = express()
+
 const bodyParser = require('body-parser')
+const server = require('http').Server(app)
+
 const router = require('./network/routes')
 const db = require('./db')
+const socket = require('./socket')
 
 db('mongodb+srv://curso:6Y9ZVx4a2oqu6ZME@cluster0-lb65t.mongodb.net/telegrom?retryWrites=true&w=majority')
-const app = express()
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
+
+socket.connect(server)
 
 router(app)
 
 
 app.use('/app', express.static('public'))
 
-app.listen(3000)
-console.log('Aplicación corriendo en el puerto 3000')
+server.listen(3000, function () {
+  console.log('Aplicación corriendo en el http://localhost:3000')
+})
