@@ -1,17 +1,23 @@
 'use strcit'
 const store = require('./store')
 
-function addMessage (user, message, chat) {
+function addMessage (user, message, chat, file) {
   return new Promise((resolve, reject) => {
     if(!user || !message || !chat) {
       reject('Faltan datos.')
       return false
     }
 
+    let fileUrl = ''
+    if (file) {
+      fileUrl = `http://localhost:3000/app/files/${file.filename}`
+    }
+
     const fullMessage = {
       user,
       message,
       chat,
+      file: fileUrl,
       date: new Date()
     }
 
