@@ -12,7 +12,9 @@ function getMessages (filterUser) {
   if (filterUser !== null) {
     filter = { user: filterUser }
   }
-  const myMessages = modelMessage.find(filter).populate('user', 'name')
+  const myMessages = modelMessage.find(filter)
+                        .populate('user', 'name')
+                        .populate('chat')
   return myMessages
 }
 

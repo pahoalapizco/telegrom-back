@@ -15,8 +15,8 @@ router.get('/', function(req, res) {
 })
 
 router.post('/', function(req, res) {
-  const { user, message } = req.body
-  controller.addMessage(user, message)
+  const { user, message, chat } = req.body
+  controller.addMessage(user, message, chat)
     .then(fullMessage =>  response.success(req, res, fullMessage, 201))
     .catch(e => response.error(req, res, e, 500))
 })

@@ -1,17 +1,17 @@
 'use strcit'
 const store = require('./store')
 
-function addMessage (user, message) {
+function addMessage (user, message, chat) {
   return new Promise((resolve, reject) => {
-    if(!user || !message) {
-      console.error('[message:controller]: Faltam datos!!.')
-      reject('Los datos son iconrrectos.')
+    if(!user || !message || !chat) {
+      reject('Faltan datos.')
       return false
     }
 
     const fullMessage = {
       user,
       message,
+      chat,
       date: new Date()
     }
 

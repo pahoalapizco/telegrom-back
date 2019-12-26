@@ -9,6 +9,11 @@ const message = new Schema ({
     type: Schema.ObjectId,
     ref: 'User'
   },
+  chat: {
+    type: Schema.ObjectId,
+    ref: 'Chat',
+    require: true
+  },
   message: {
     type: String,
     require: true
