@@ -23,7 +23,6 @@ const upload = multer({ storage })
 
 router.get('/', function(req, res) {
   const { user } = req.query
-
   controller.getMessages(user)
     .then(messages =>  response.success(req, res, messages, 201))
     .catch(e => response.error(req, res, e, 400))
